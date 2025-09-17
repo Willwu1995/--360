@@ -1486,7 +1486,16 @@
             const rank = leaderboardSystem.addScore(score, level, gameTime);
             finalRankElement.textContent = rank;
             leaderboardSystem.display(); // 更新排行榜显示
-            alert(`成绩已保存！排名：第${rank}名`);
+            
+            // 显示保存成功消息而不是alert
+            messageText.style.display = 'block';
+            messageText.innerHTML = `<span class="green-text">成绩已保存！</span><br>排名：第${rank}名`;
+            messageText.style.fontSize = '16px';
+            
+            // 3秒后隐藏消息
+            setTimeout(() => {
+                messageText.style.display = 'none';
+            }, 3000);
         }
         
         function backToMenu() {
