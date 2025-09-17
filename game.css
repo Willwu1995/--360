@@ -1,0 +1,219 @@
+body {
+    margin: 0;
+    padding: 0;
+    background: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+}
+
+#gameCanvas {
+    border: 2px solid #333;
+    background: #1a1a1a;
+}
+
+.startup-screen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, #1e3c72, #2a5298);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.logo {
+    font-size: 48px;
+    color: white;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.start-button {
+    padding: 15px 30px;
+    font-size: 18px;
+    background: #ff6b6b;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.start-button:hover {
+    background: #ff5252;
+}
+
+.effect-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 100;
+}
+
+.message-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 36px;
+    font-weight: bold;
+    z-index: 200;
+    display: none;
+}
+
+.lightning {
+    background: linear-gradient(45deg, #fff, #ffeb3b);
+    animation: flash 0.1s infinite;
+}
+
+.storm {
+    background: linear-gradient(45deg, #37474f, #546e7a);
+    animation: shake 0.3s infinite;
+}
+
+.celebration {
+    background: linear-gradient(45deg, #ff9800, #ffc107);
+    animation: celebrate 0.8s infinite;
+}
+
+.trash {
+    background: linear-gradient(45deg, #424242, #616161);
+}
+
+@keyframes flash {
+    0%, 100% { 
+        opacity: 0.2; 
+        background: linear-gradient(45deg, #fff, #ffeb3b);
+    }
+    50% { 
+        opacity: 1; 
+        background: linear-gradient(45deg, #ffffff, #fff59d);
+    }
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0) rotate(0deg); }
+    10% { transform: translateX(-8px) rotate(-1deg); }
+    20% { transform: translateX(8px) rotate(1deg); }
+    30% { transform: translateX(-6px) rotate(-0.5deg); }
+    40% { transform: translateX(6px) rotate(0.5deg); }
+    50% { transform: translateX(-4px) rotate(-0.3deg); }
+    60% { transform: translateX(4px) rotate(0.3deg); }
+    70% { transform: translateX(-2px) rotate(-0.1deg); }
+    80% { transform: translateX(2px) rotate(0.1deg); }
+    90% { transform: translateX(-1px) rotate(-0.05deg); }
+}
+
+@keyframes celebrate {
+    0%, 100% { 
+        transform: translateX(0) rotate(0deg) scale(1);
+        filter: hue-rotate(0deg);
+    }
+    25% { 
+        transform: translateX(-3px) rotate(-2deg) scale(1.05);
+        filter: hue-rotate(90deg);
+    }
+    50% { 
+        transform: translateX(3px) rotate(2deg) scale(1.1);
+        filter: hue-rotate(180deg);
+    }
+    75% { 
+        transform: translateX(-2px) rotate(-1deg) scale(1.05);
+        filter: hue-rotate(270deg);
+    }
+}
+
+.red-text {
+    color: #ff0000;
+    text-shadow: 3px 3px 6px rgba(0,0,0,0.9), 0 0 20px rgba(255,0,0,0.5);
+    animation: pulse 0.5s infinite;
+}
+
+.green-text {
+    color: #00ff00;
+    text-shadow: 3px 3px 6px rgba(0,0,0,0.9), 0 0 20px rgba(0,255,0,0.5);
+    animation: pulse 0.5s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+.rain-particle {
+    position: absolute;
+    width: 2px;
+    background: linear-gradient(to bottom, transparent, #4fc3f7);
+    animation: rainfall 1s linear infinite;
+}
+
+.lightning-bolt {
+    position: absolute;
+    width: 3px;
+    background: linear-gradient(to bottom, #fff, #ffeb3b);
+    animation: lightning-strike 0.3s ease-out;
+}
+
+.trash-item {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: #8B4513;
+    animation: trash-fall 2s linear infinite;
+}
+
+.confetti {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    animation: confetti-fall 3s linear infinite;
+}
+
+@keyframes rainfall {
+    0% { top: -20px; opacity: 0; }
+    10% { opacity: 1; }
+    100% { top: 100vh; opacity: 0; }
+}
+
+@keyframes lightning-strike {
+    0% { height: 0; opacity: 0; }
+    50% { height: 100vh; opacity: 1; }
+    100% { height: 100vh; opacity: 0; }
+}
+
+@keyframes trash-fall {
+    0% { 
+        top: -20px; 
+        transform: rotate(0deg); 
+        opacity: 1; 
+    }
+    100% { 
+        top: 100vh; 
+        transform: rotate(360deg); 
+        opacity: 0.3; 
+    }
+}
+
+@keyframes confetti-fall {
+    0% { 
+        top: -20px; 
+        transform: rotate(0deg); 
+        opacity: 1; 
+    }
+    100% { 
+        top: 100vh; 
+        transform: rotate(720deg); 
+        opacity: 0; 
+    }
+}
